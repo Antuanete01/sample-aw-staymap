@@ -42,7 +42,7 @@ export default {
  filteredConcerts() {
   if (this.selectedGenres.length === 0) return this.concerts;
   return this.concerts.filter(concert =>
-    this.selectedGenres.includes(concert.artist?.[0]?.genre)
+    this.selectedGenres.includes(concert.genre)
   );
 },
     //Funcion que sirver para condicionar la visibilidad del boton, se usa en el v-if
