@@ -147,12 +147,14 @@ export default {
 
 
   created() {
-    this.concertService = new ConcertService();
-    this.concertService.getAll().then(response => {
-      console.log('API response:', response.data);
-      this.concerts = response.data.data.map(c => new Concert(c));
-    }).catch(error => console.error('Error al cargar conciertos', error));
-  }
+  this.concertService = new ConcertService();
+  this.concertService.getAll()
+    .then(concerts => {
+      console.log('🎵 Conciertos cargados:', concerts);
+      this.concerts = concerts; // 👈 Esto ya es el array
+    })
+    .catch(error => console.error('❌ Error al cargar conciertos', error));
+}
 }
 </script>
 
