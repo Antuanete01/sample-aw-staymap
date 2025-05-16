@@ -6,7 +6,7 @@
         "artist": [
           {
             "name": "Stray Kids",
-            "genre": "Kpop"
+            "genre": "K-pop"
           }
         ],
         "image": "https://cdn.getcrowder.com/images/e946faaa-b7b5-4b3a-9d60-b803f1c1d78a-banner-web-desktop.jpg",
@@ -27,7 +27,7 @@
         "artist": [
           {
             "name": "Arctic Monkeys",
-            "genre": "Rock Alternativo"
+            "genre": "Rock"
           }
         ],
         "image": "https://i0.wp.com/enclavedeindie.com/wp-content/uploads/2023/05/arctic-monekys-tour.jpg?fit=1400%2C525&ssl=1",
@@ -51,7 +51,7 @@
             "genre": "Pop"
           }
         ],
-        "image": "https://cdn.teleticket.com.pe/especiales/harry-styles-2020/images/harry_rs.jpg",
+        "image": "https://imgmedia.libero.pe/1200x660/libero/original/2022/01/19/61e85d40e9633730df00a792.webp",
         "description": "¡Harry Styles regresa a Lima con un show único que no querrás perderte! El artista británico, reconocido por su estilo auténtico y su increíble presencia en el escenario, traerá sus mayores éxitos en una noche llena de emoción, conexión y buena música. Prepárate para cantar a todo pulmón, dejarte llevar por la magia de sus canciones y vivir una experiencia inolvidable. Lima se llena de estilo, sentimiento y música con Harry Styles en concierto.",
         "date": "29 de Noviembre",
         "status": "Sold out",
@@ -95,7 +95,7 @@
         ],
         "image": "https://cdn.getcrowder.com/images/abf95b2d-46a1-48b0-a803-7587d3ae2bd8-tmbanner-desktop.jpg",
         "description": "¡Dua Lipa llega por primera vez a Lima con su esperada gira Radical Optimism Tour! El martes 25 de noviembre de 2025, el Estadio San Marcos será el escenario donde la superestrella británica presentará en vivo los temas de su nuevo álbum Radical Optimism, junto a los éxitos que la han convertido en un ícono global del pop.",
-        "date": "25 de Noviembre",
+        "date": "25 de Nov",
         "status": "Sold out",
         "venue": {
           "name": "Estadio San Marcos",
@@ -174,7 +174,7 @@
         "artist": [
           {
             "name": "Dpos",
-            "genre": "Latin Rock"
+            "genre": "Rock"
           }
         ],
         "image": "https://i.scdn.co/image/ab6761610000517479411ef5a874f7110ec90d2b",
@@ -242,7 +242,7 @@
       "id": 5,
       "name": "The Weeknd fans",
       "memberQuantity": "6k",
-      "image": "https://plus.cusica.com/wp-content/uploads/2022/01/698360ec-0075-4b23-808f-da00363878bc.png"
+      "image": "https://i.pinimg.com/736x/ce/66/39/ce66395d88d0ca06ad47599068fad84b.jpg"
     },
     {
       "id": 6,
@@ -273,27 +273,15 @@
       "name": "Linkin Park fans",
       "memberQuantity": "14k",
       "image": "https://www.ebilet.pl/now/app/uploads/2025/03/Linkin_Park-desktop-1280x720.jpg"
-    },
-    {
-      "id": "20",
-      "name": "awr",
-      "memberQuantity": "10k",
-      "image": "awes"
-    },
-    {
-      "id": "50",
-      "name": "lolazo",
-      "memberQuantity": "40",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRI_kT6YUj8Gxzjy7gz5gwZyAHIb-WBR_5Sg&s"
     }
   ],
   "users": [
     {
       "id": 1,
-      "name": "Bakugito Katsuki",
-      "email": "lolazo@gmail.com",
-      "password": "pene",
-      "profileImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSt_9TLjmBZnQPZ2uU-YSLFNdHKPfN7BKqEvA&s",
+      "name": "Bang Chan",
+      "email": "chrisbangchan@gmail.com",
+      "password": "skz",
+      "profileImage": "https://i.pinimg.com/736x/1e/b8/90/1eb8908da855560a6b79e16455798985.jpg",
       "type": "fan",
       "location": {
         "lat": -12.076837528231636,
@@ -302,10 +290,10 @@
     },
     {
       "id": 2,
-      "name": "Momo Virgolini",
-      "email": "lolazoA@gmail.com",
-      "password": "pene",
-      "profileImage": "https://e7.pngegg.com/pngimages/551/449/png-clipart-mario-mario.png",
+      "name": "Diego Rivas",
+      "email": "diegorivas@gmail.com",
+      "password": "rivas",
+      "profileImage": "https://www.infobae.com/new-resizer/keSKu2iCr9g-NNBLlRwNlR_Yimo=/arc-anglerfish-arc2-prod-infobae/public/W3V2FSPCKNFB3NMC5IUJY6DRFY.jpg",
       "type": "artist",
       "location": {
         "lat": -12.085273916321606,
