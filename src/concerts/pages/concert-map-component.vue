@@ -78,13 +78,15 @@ export default {
       const offset = 0.00005;
       return (Math.random() - 0.5) * offset;
     },
-    fetchConcerts() {
-      this.concertService = new ConcertService();
-      this.concertService.getAll().then(response => {
-        this.concerts = response.data.data.map(c => new Concert(c));
-        this.loadMap();
-      });
-    }
+   fetchConcerts() {
+  this.concertService = new ConcertService();
+  this.concertService.getAll().then(response => {
+    this.concerts = response.map(c => new Concert(c)); // ← corrección clave
+    this.loadMap();
+  }).catch(error => {
+    console.error("❌ Error al obtener conciertos:", error);
+  });
+}
   },
   mounted() {
     this.fetchConcerts();
