@@ -1,6 +1,6 @@
 {
   "concerts": {
-    "data": [
+    
       {
         "id": "1",
         "artist": [
@@ -211,7 +211,7 @@
           }
         }
       }
-    ]
+
   },
   "communities": [
     {
