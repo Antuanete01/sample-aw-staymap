@@ -211,11 +211,12 @@ created() {
       </div>
 
       <!-- Lista de conciertos -->
-      <div class="concerts-grid">
+     <div class="concerts-grid">
         <div v-for="concert in filteredConcerts" :key="concert.id" class="concert-card">
-         <img :src="concert.image" :alt="concert.artistName" />
-<h3>{{ concert.artistName }}</h3>
-<p>{{ concert.date }}, {{ concert.venueName }}</p>
+          <img :src="concert.image" :alt="concert.artistName" />
+          <div class="concert-info">
+            <h3>{{ concert.artistName }} </h3>
+            <p>{{ concert.date }}, {{concert.venueName}}</p>
           </div>
         </div>
       </div>
