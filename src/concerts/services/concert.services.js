@@ -13,7 +13,7 @@ export class ConcertService {
         return [];
       }
 
-      return json.concerts.data.map(c => new Concert(c));
+      return json.concerts.data.data.map(c => new Concert(c));
     } catch (error) {
       console.error('❌ Error al cargar conciertos:', error);
       return [];
