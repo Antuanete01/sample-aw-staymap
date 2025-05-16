@@ -5,17 +5,25 @@ import httpInstance from "../../shared/services/http.instance.js";
  * @description Service class for handling CRUD operations on categories using HTTP requests
  */
 export class CommunityService {
-    /** @type {string} The API endpoint for categories */
-    resourceEndpoint = import.meta.env.VITE_CONCERTS_ENDPOINT_PATH;
+    constructor() {
+    this.resourceEndpoint = import.meta.env.VITE_CATEGORIES_ENDPOINT_PATH;
+  }
 
-    /**
-     * Retrieves all categories
-     * @returns {Promise<AxiosResponse<any>>} Promise that resolves to an array of categories
-     */
-    getAll() {
-        return httpInstance.get(this.resourceEndpoint);
+  /**
+   * Recupera todas las comunidades desde el archivo local
+   * @returns {Promise<Array<Community>>}
+   */
+  async getAll() {
+    const response = await fetch(this.resourceEndpoint);
+    const json = await response.json();
+
+    if (!json.communities || !Array.isArray(json.communities)) {
+      console.error('❌ El formato del JSON no es válido o communities no es un array');
+      return [];
     }
 
+    return json.communities.map(c => new Community(c));
+  }
     /**
      * Retrieves a category by its ID
      * @param {number|string} id - The ID of the category to retrieve
