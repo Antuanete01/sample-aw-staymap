@@ -31,7 +31,8 @@ export default {
       genres: [ // ← lista de géneros disponibles
         "Pop", "Rock", "K-pop", "Indie", "Urbano",
         "Electrónica", "Salsa", "Cumbia", "Jazz"
-      ]
+      ],
+        currentUser: null
 
     }
   },
@@ -42,6 +43,10 @@ export default {
       return this.concerts.filter(concert =>
           this.selectedGenres.includes(concert.genre)
       );
+    }
+    //Funcion que sirver para condicionar la visibilidad del boton, se usa en el v-if
+    isArtist() {
+      return this.currentUser && this.currentUser.type === 'artist';
     }
   },
 
@@ -147,6 +152,10 @@ export default {
 
 
   created() {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      this.currentUser = JSON.parse(storedUser);
+    }
   this.concertService = new ConcertService();
   this.concertService.getAll()
     .then(concerts => {
@@ -159,46 +168,47 @@ export default {
 </script>
 
 <template>
-  <div class="w-full">
-    <!--
-    DIALOGO PARA CREAR NUEVA COMUNIDAD
-    -->
+ <div class="w-full">
+    <!--DIALOGO PARA CREAR NUEVO CONCIERTO-->
     <div class="flex justify-content-between align-items-center mb-4" style="margin-left: 1.5rem;">
       <h2 class="text-2xl">Conciertos</h2>
-      <pv-button label="Nueva concierta" icon="pi pi-plus" severity="success" @click="onNewItem"/>
+      <pv-button
+          v-if="isArtist"
+          label="Nuevo concierto"
+          icon="pi pi-plus"
+          severity="success"
+          @click="onNewItem"
+          style="background-color: #CB6CE6; border-radius: 25px; border: none; color: white; font-weight: bold;"
+      />
     </div>
 
 
     <div class="concerts-filter-container">
-
-    <div class="filter-container">
-      <div class="filter-header">
-        <span>Filtrar</span>
+      <!-- Filtros -->
+      <div class="filter-container">
+        <div class="filter-header">
+          <span>Filtrar</span>
+        </div>
+        <div class="filter-options">
+          <label v-for="genre in genres" :key="genre" class="checkbox-label">
+            <input type="checkbox" :value="genre" v-model="selectedGenres" />
+            {{ genre }}
+          </label>
+        </div>
       </div>
-      <div class="filter-options">
-        <label v-for="genre in genres" :key="genre" class="checkbox-label">
-          <input
-              type="checkbox"
-              :value="genre"
-              v-model="selectedGenres"
-          />
-          {{ genre }}
-        </label>
-      </div>
-    </div>
 
-
-    <div class="grid">
-      <div v-for="concert in concerts" :key="concert.id" class="col-12 md:col-6 lg:col-3">
-        <div class="concert-card">
+      <!-- Lista de conciertos -->
+      <div class="concerts-grid">
+        <div v-for="concert in filteredConcerts" :key="concert.id" class="concert-card">
           <img :src="concert.image" :alt="concert.artistName" />
-          <div class="info">
-            <h3>{{ concert.artistName }}</h3>
-            <p>{{ concert.date }}</p>
+          <div class="concert-info">
+            <h3>{{ concert.artistName }} </h3>
+            <p>{{ concert.date }}, {{concert.venueName}}</p>
           </div>
         </div>
       </div>
     </div>
+
     <!-- Diálogo para Crear / Editar -->
     <concert-item-create-and-edit-component
         :edit="isEdit"
@@ -207,7 +217,6 @@ export default {
         @cancel-requested="onCancelRequested"
         @save-requested="onSaveRequested($event)"
     />
-    </div>
   </div>
 </template>
 
