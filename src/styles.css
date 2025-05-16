@@ -1,0 +1,295 @@
+body {
+
+    margin: 0;
+    padding: 0;
+    background-color: #000000;
+    font-family: 'Segoe UI', sans-serif;
+    color: white;
+}
+
+.nav-button {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.nav-button:hover {
+    color: #b54cf4;
+}
+
+.nav-button.router-link-active {
+    color: #b54cf4;
+    font-weight: bold;
+}
+
+
+
+
+/* --- Tarjeta de comunidad --- */
+.community-card {
+    margin-right: 2.4rem; /* separa hacia la derecha */
+
+    background-color: #1e1e1e;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+
+    transition: transform 0.2s ease;
+}
+
+.community-card:hover {
+    transform: translateY(-4px);
+}
+
+.community-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: 1.5rem;
+    border-top-right-radius: 1.5rem;
+}
+
+/* --- Texto dentro de la tarjeta --- */
+.community-card .info {
+    padding: 1rem;
+}
+
+.community-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.3rem;
+    color: white;
+}
+
+.community-card p {
+    font-size: 0.9rem;
+    color: #ccc;
+    margin: 0;
+}
+
+/* --- Botón morado --- */
+.community-card .join-button {
+    background-color: #b54cf4;
+    border: none;
+    border-radius: 2rem;
+    padding: 0.5rem 1.2rem;
+    color: white;
+    font-weight: 600;
+    width: 80%;
+    margin: 1rem auto;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.community-card .join-button:hover {
+    background-color: #a23be3;
+
+
+}
+
+.custom-toolbar {
+    background-color: #000000 !important;
+    color: white !important;
+    border-bottom: 1px solid #222;
+}
+
+.logo-section .logo {
+    height: 70px;
+}
+
+
+
+
+
+/* --- Tarjeta de comunidad --- */
+.concert-card {
+
+    border-radius: 1.5rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+
+    transition: transform 0.2s ease;
+}
+
+.concert-card:hover {
+    transform: translateY(-4px);
+}
+
+.concert-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 1rem;
+
+}
+
+/* --- Texto dentro de la tarjeta --- */
+.concert-card .info {
+    padding: 1rem;
+}
+
+.concert-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.3rem;
+    color: white;
+}
+
+.concert-card p {
+    font-size: 0.9rem;
+    color: #ccc;
+    margin: 0;
+}
+
+/* --- Botón morado --- */
+.concert-card {
+
+    border-radius: 2rem;
+    padding: 0.5rem 1.2rem;
+    color: white;
+    font-weight: 600;
+    width: 80%;
+    margin: 1rem auto;
+
+    cursor: pointer;
+
+}
+
+.concert-card{
+    background-color: #000000;
+
+
+}
+/* --- NO TOCAR  --- */
+.concerts-filter-container {
+
+    display: flex;
+}
+.communities-group-container{
+
+    display: flex;
+}
+
+
+.filter-container {
+    background-color: #110F0F;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* alineación a la izquierda */
+    color: #CB6CE6;
+    width: 1000px;
+
+
+}
+
+.filter-header {
+    font-weight: bold;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+    color: #CB6CE6;
+    font-size: 2rem;
+}
+
+.filter-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%; /* ocupar todo el ancho para alinear a la izquierda */
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+    margin-left: 1.5rem;
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: #110F0F;
+    border: 2px solid #CB6CE6;
+    border-radius: 4px;
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.checkbox-label input[type="checkbox"]:checked {
+    background-color: #CB6CE6;
+    border-color: #CB6CE6;
+}
+
+.checkbox-label input[type="checkbox"]::after {
+
+    color: black;
+    font-size: 16px;
+    position: absolute;
+    top: 0;
+    left: 4px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.checkbox-label input[type="checkbox"]:checked::after {
+    opacity: 1;
+}
+
+
+/*GROUPSSS*/
+
+
+
+.groups-container {
+    margin-right: 2.4rem; /* separa hacia la derecha */
+    background-color: #110F0F;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* alineación a la izquierda */
+    color: #CB6CE6;
+    width: 40%;
+
+
+}
+
+.groups-header {
+    font-weight: bold;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+    color: #ffffff;
+    font-size: 2rem;
+}
+
+.groups-options {
+    margin-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%; /* ocupar todo el ancho para alinear a la izquierda */
+    color: #ffffff;
+    font-size: 1.3rem;
+}
+
+.groups-options a:hover {
+    color: #CB6CE6;
+    transition: color 0.3s ease;
+}
+
+
+
