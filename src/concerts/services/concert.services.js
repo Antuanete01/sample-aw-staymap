@@ -6,7 +6,7 @@ export class ConcertService {
    * @returns {Promise<Array<Concert>>}
    */
   async getAll() {
-    const response = await fetch('/src/assets/db.json');
+    const response = await fetch(import.meta.env.VITE_CONCERTS_ENDPOINT_PATH);
     const json = await response.json();
     return json.concerts.data.map(c => new Concert(c));
   }
