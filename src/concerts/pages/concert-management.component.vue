@@ -28,11 +28,12 @@ export default {
 
       selectedGenres: [], // ← para guardar los géneros seleccionados
 
-      genres: [ // ← lista de géneros disponibles
+      genres: [
         "Pop", "Rock", "K-pop", "Indie", "Urbano",
         "Electrónica", "Salsa", "Cumbia", "Jazz"
       ],
-        currentUser: null
+
+      currentUser: null
 
     }
   },
@@ -40,15 +41,17 @@ export default {
   computed: {
     filteredConcerts() {
       if (this.selectedGenres.length === 0) return this.concerts;
+
       return this.concerts.filter(concert =>
           this.selectedGenres.includes(concert.genre)
       );
-    }
+    },
     //Funcion que sirver para condicionar la visibilidad del boton, se usa en el v-if
     isArtist() {
       return this.currentUser && this.currentUser.type === 'artist';
     }
   },
+
 
   methods: {
 
@@ -151,7 +154,7 @@ export default {
   },
 
 
-  created() {
+ created() {
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       this.currentUser = JSON.parse(storedUser);
@@ -168,7 +171,7 @@ export default {
 </script>
 
 <template>
- <div class="w-full">
+  <div class="w-full">
     <!--DIALOGO PARA CREAR NUEVO CONCIERTO-->
     <div class="flex justify-content-between align-items-center mb-4" style="margin-left: 1.5rem;">
       <h2 class="text-2xl">Conciertos</h2>
@@ -218,6 +221,7 @@ export default {
         @save-requested="onSaveRequested($event)"
     />
   </div>
+
 </template>
 
 <style >
