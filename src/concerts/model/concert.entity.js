@@ -21,4 +21,15 @@ export class Concert {
         this.image = image;
         this.status=status;
     }
+    get artistName() {
+    return this.artist?.[0]?.name || '';
+  }
+
+  get genre() {
+    return this.artist?.[0]?.genre || '';
+  }
+
+  get venueName() {
+    return this.venue?.name || '';
+  }
 }
