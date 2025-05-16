@@ -5,7 +5,7 @@ import { Community } from '@/community/model/community.entity';
  * @description Service class for handling CRUD operations on categories using HTTP requests
  */
 export class CommunityService {
-  resourceEndpoint = import.meta.env.VITE_CATEGORIES_ENDPOINT_PATH;
+  resourceEndpoint = import.meta.env.VITE_CONCERTS_ENDPOINT_PATH;
 
     async getAll() {
     const response = await fetch(this.resourceEndpoint);
