@@ -78,11 +78,11 @@ export default {
       return (Math.random() - 0.5) * offset;
     },
     fetchConcerts() {
-    this.concertService = new ConcertService();
-    this.concertService.getAll().then(concerts => {
-    this.concerts = concerts;
+        this.concertService.getAll().then(response => {
+    console.log('API response:', response.data);
+    this.concerts = response.data.data.map(c => new Concert(c));
     this.loadMap();
-  });
+});
   },
   mounted() {
     this.fetchConcerts();
