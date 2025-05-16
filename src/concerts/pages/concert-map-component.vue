@@ -46,8 +46,8 @@ export default {
 
         this.concerts.forEach(concert => {
           const position = {
-            lat: Number(concert.venueLat) + this.getRandomOffset(),
-            lng: Number(concert.venueLng) + this.getRandomOffset()
+            lat: Number(concert.venue?.location?.lat) + this.getRandomOffset(),
+            lng: Number(concert.venue?.location?.lng) + this.getRandomOffset()
           };
 
           const marker = new google.maps.Marker({
@@ -60,12 +60,11 @@ export default {
           });
 
           marker.addListener('click', () => {
-            const data = JSON.parse(JSON.stringify(concert));
             this.infoWindow.setContent(
-                `<div style="font-family: Arial, sans-serif; color: black; padding: 4px;">
-                  <h3 style="margin: 0; font-size: 16px;">${data.artistName}</h3>
-                 <p style="margin: 0; font-size: 14px;">${data.venueName} - ${data.date}</p>
-                </div>`
+              `<div style="font-family: Arial, sans-serif; color: black; padding: 4px;">
+                <h3 style="margin: 0; font-size: 16px;">${concert.artistName}</h3>
+                <p style="margin: 0; font-size: 14px;">${concert.venueName} - ${concert.date}</p>
+              </div>`
             );
             this.infoWindow.open(this.map, marker);
           });
@@ -78,15 +77,17 @@ export default {
       const offset = 0.00005;
       return (Math.random() - 0.5) * offset;
     },
-   fetchConcerts() {
-  this.concertService = new ConcertService();
-  this.concertService.getAll().then(response => {
-    this.concerts = response.map(c => new Concert(c)); // ← corrección clave
-    this.loadMap();
-  }).catch(error => {
-    console.error("❌ Error al obtener conciertos:", error);
-  });
-}
+    fetchConcerts() {
+      this.concertService = new ConcertService();
+      this.concertService.getAll()
+        .then(response => {
+          this.concerts = response.map(c => new Concert(c));
+          this.loadMap();
+        })
+        .catch(error => {
+          console.error("❌ Error al obtener conciertos:", error);
+        });
+    }
   },
   mounted() {
     this.fetchConcerts();
@@ -160,8 +161,6 @@ export default {
   border-radius: 1rem;
   overflow: hidden;
 }
-
-/*RESALTADO*/
 .resaltado {
   color: #b54cf4;
 }
