@@ -13,13 +13,13 @@ export class ConcertService {
       const json = await response.json();
 
       if (!json.concerts || !Array.isArray(json.concerts.data)) {
-        console.error('❌ Error: El JSON no tiene una propiedad "concerts.data" válida');
+        console.error(' Error: El JSON no tiene una propiedad "concerts.data" válida');
         return [];
       }
 
       return json.concerts.data.map(c => new Concert(c));
     } catch (error) {
-      console.error('❌ Error al cargar conciertos:', error);
+      console.error(' Error al cargar conciertos:', error);
       return [];
     }
   }
