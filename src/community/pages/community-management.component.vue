@@ -127,12 +127,12 @@ export default {
   },
 
 
-  created() {
+ created() {
   this.communityService = new CommunityService();
   this.communityService.getAll()
     .then(communities => {
       console.log('API response:', communities);
-      this.communities = communities.map(c => new Community(c));
+      this.communities = communities;
     })
     .catch(error => console.error('Error al cargar comunidades', error));
 }
