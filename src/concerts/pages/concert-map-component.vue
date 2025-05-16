@@ -46,8 +46,8 @@ export default {
 
         this.concerts.forEach(concert => {
           const position = {
-            lat: Number(concert.venue?.location?.lat) + this.getRandomOffset(),
-            lng: Number(concert.venue?.location?.lng) + this.getRandomOffset()
+            lat: Number(concert.venueLat),
+            lng: Number(concert.venueLng)
           };
 
           const marker = new google.maps.Marker({
@@ -73,16 +73,15 @@ export default {
         });
       });
     },
-    getRandomOffset() {
-      const offset = 0.00005;
-      return (Math.random() - 0.5) * offset;
-    },
     fetchConcerts() {
-        this.concertService.getAll().then(response => {
-    console.log('API response:', response.data);
-    this.concerts = response.data.data.map(c => new Concert(c));
-    this.loadMap();
-});
+      this.concertService = new ConcertService();
+      this.concertService.getAll().then(concerts => {
+        this.concerts = concerts;
+        this.loadMap();
+      }).catch(error => {
+        console.error('❌ Error al cargar conciertos en mapa:', error);
+      });
+    }
   },
   mounted() {
     this.fetchConcerts();
@@ -90,25 +89,8 @@ export default {
 };
 </script>
 
-<template>
-  <div class="container">
-    <div class="sidebar">
-      <div v-for="concert in concerts" :key="concert.id" class="card">
-        <h3>{{ concert.artistName }}</h3>
-        <p>{{ concert.venueName }} - {{ concert.date }}</p>
-        <span :class="['status-badge', concert.status === 'Available' ? 'available' : 'soldout']">
-          {{ concert.status }}
-        </span>
-      </div>
-    </div>
-    <div class="map-section">
-      <h1>Encuentra conciertos <span class="resaltado">cercanos</span></h1>
-      <div ref="map" class="mapa-style"></div>
-    </div>
-  </div>
-</template>
 
-<style >
+<style scoped>
 .container {
   display: flex;
   height: 100vh;
@@ -156,6 +138,8 @@ export default {
   border-radius: 1rem;
   overflow: hidden;
 }
+
+/*RESALTADO*/
 .resaltado {
   color: #b54cf4;
 }
