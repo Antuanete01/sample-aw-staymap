@@ -194,7 +194,7 @@ export default {
           <img :src="concert.image" :alt="concert.artistName" />
           <div class="info">
             <h3>{{ concert.artistName }}</h3>
-            <p>{{ concert.date }} fecha</p>
+            <p>{{ concert.date }}</p>
           </div>
         </div>
       </div>
