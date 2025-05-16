@@ -5,20 +5,15 @@ import httpInstance from "../../shared/services/http.instance.js";
  * @description Service class for handling CRUD operations on categories using HTTP requests
  */
 export class CommunityService {
-    constructor() {
-    this.resourceEndpoint = import.meta.env.VITE_CATEGORIES_ENDPOINT_PATH;
-  }
+  resourceEndpoint = import.meta.env.VITE_CATEGORIES_ENDPOINT_PATH;
 
-  /**
-   * Recupera todas las comunidades desde el archivo local
-   * @returns {Promise<Array<Community>>}
-   */
   async getAll() {
     const response = await fetch(this.resourceEndpoint);
     const json = await response.json();
 
+    
     if (!json.communities || !Array.isArray(json.communities)) {
-      console.error('❌ El formato del JSON no es válido o communities no es un array');
+      console.error('❌ Error: El JSON no tiene una lista de "communities" válida');
       return [];
     }
 
