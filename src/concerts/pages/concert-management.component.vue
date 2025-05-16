@@ -39,13 +39,12 @@ export default {
   },
 
   computed: {
-    filteredConcerts() {
-      if (this.selectedGenres.length === 0) return this.concerts;
-
-      return this.concerts.filter(concert =>
-          this.selectedGenres.includes(concert.genre)
-      );
-    },
+ filteredConcerts() {
+  if (this.selectedGenres.length === 0) return this.concerts;
+  return this.concerts.filter(concert =>
+    this.selectedGenres.includes(concert.artist?.[0]?.genre)
+  );
+},
     //Funcion que sirver para condicionar la visibilidad del boton, se usa en el v-if
     isArtist() {
       return this.currentUser && this.currentUser.type === 'artist';
@@ -154,18 +153,29 @@ export default {
   },
 
 
- created() {
+created() {
+  try {
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       this.currentUser = JSON.parse(storedUser);
     }
+  } catch (e) {
+    console.warn('⚠️ Usuario mal formateado en localStorage');
+  }
+
   this.concertService = new ConcertService();
+
   this.concertService.getAll()
     .then(concerts => {
+      if (!concerts || concerts.length === 0) {
+        console.warn('⚠️ No se encontraron conciertos');
+      }
+      this.concerts = concerts;
       console.log('🎵 Conciertos cargados:', concerts);
-      this.concerts = concerts; // 👈 Esto ya es el array
     })
-    .catch(error => console.error('❌ Error al cargar conciertos', error));
+    .catch(error => {
+      console.error('❌ Error al cargar conciertos:', error);
+    });
 }
 }
 </script>
