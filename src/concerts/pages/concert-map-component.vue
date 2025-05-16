@@ -108,7 +108,7 @@ export default {
   </div>
 </template>
 
-<style scoped>
+<style >
 .container {
   display: flex;
   height: 100vh;
