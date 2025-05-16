@@ -1,19 +1,27 @@
 import { Concert } from '@/concerts/model/concert.entity';
 
 export class ConcertService {
-  // En producción, debe ser '/db.json'
   resourceEndpoint = import.meta.env.VITE_CONCERTS_ENDPOINT_PATH || '/db.json';
 
-async getAll() {
-    const response = await fetch(this.resourceEndpoint);
-    const json = await response.json();
+  /**
+   * Recupera todos los conciertos desde el archivo db.json en /public
+   * @returns {Promise<Array<Concert>>}
+   */
+  async getAll() {
+    try {
+      const response = await fetch(this.resourceEndpoint);
+      const json = await response.json();
 
-    if (!json.concerts || !Array.isArray(json.concerts)) {
-      console.error('❌ El JSON no tiene una propiedad "concerts" válida');
+      if (!json.concerts || !Array.isArray(json.concerts.data)) {
+        console.error('❌ Error: El JSON no tiene una propiedad "concerts.data" válida');
+        return [];
+      }
+
+      return json.concerts.data.map(c => new Concert(c));
+    } catch (error) {
+      console.error('❌ Error al cargar conciertos:', error);
       return [];
     }
-
-    return json.concerts.data.map(c => new Concert(c));
   }
 
   async getById(id) {
