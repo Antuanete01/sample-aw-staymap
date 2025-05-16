@@ -1,20 +1,29 @@
 import httpInstance from "../../shared/services/http.instance.js";
+import { Concert } from '@/concerts/model/concert.entity';
 
 /**
- * @class CategoryService
- * @description Service class for handling CRUD operations on categories using HTTP requests
+ * @class ConcertService
+ * @description Service class for handling CRUD operations on concerts using HTTP requests
  */
 export class ConcertService {
-    /** @type {string} The API endpoint for categories */
+    /** @type {string} The API endpoint for concerts */
     resourceEndpoint = import.meta.env.VITE_CONCERTS_ENDPOINT_PATH;
 
     /**
-     * Retrieves all categories
-     * @returns {Promise<AxiosResponse<any>>} Promise that resolves to an array of categories
-     */
-    getAll() {
-        return httpInstance.get(this.resourceEndpoint);
+       * Mapea todos los conciertos desde el archivo local db.json
+       * @returns {Promise<Array<Concert>>}
+   */
+    async getAll() {
+    const response = await fetch(this.resourceEndpoint);
+    const json = await response.json();
+
+    if (!json.concerts || !Array.isArray(json.concerts.data)) {
+      console.error('❌ Error: El JSON no tiene una estructura "concerts.data" válida');
+      return [];
     }
+
+    return json.concerts.data.map(c => new Concert(c));
+  }
 
     /**
      * Retrieves a category by its ID
