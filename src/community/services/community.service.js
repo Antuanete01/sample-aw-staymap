@@ -1,5 +1,5 @@
 import httpInstance from "../../shared/services/http.instance.js";
-
+import { Community } from '@/community/model/community.entity';
 /**
  * @class CategoryService
  * @description Service class for handling CRUD operations on categories using HTTP requests
@@ -7,13 +7,12 @@ import httpInstance from "../../shared/services/http.instance.js";
 export class CommunityService {
   resourceEndpoint = import.meta.env.VITE_CATEGORIES_ENDPOINT_PATH;
 
-  async getAll() {
+    async getAll() {
     const response = await fetch(this.resourceEndpoint);
     const json = await response.json();
 
-    
     if (!json.communities || !Array.isArray(json.communities)) {
-      console.error('❌ Error: El JSON no tiene una lista de "communities" válida');
+      console.error('❌ El JSON no tiene una propiedad "communities" válida');
       return [];
     }
 
