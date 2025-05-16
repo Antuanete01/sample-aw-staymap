@@ -1,17 +1,22 @@
-import { Concert } from '@/concerts/model/concert.entity';
+import httpInstance from "../../shared/services/http.instance.js";
 
+/**
+ * @class CategoryService
+ * @description Service class for handling CRUD operations on categories using HTTP requests
+ */
 export class ConcertService {
-  /**
-   * Recupera todos los conciertos desde el archivo local db.json
-   * @returns {Promise<Array<Concert>>}
-   */
-  async getAll() {
-    const response = await fetch(import.meta.env.VITE_CONCERTS_ENDPOINT_PATH);
-    const json = await response.json();
-    return json.concerts.data.map(c => new Concert(c));
-  }
+    /** @type {string} The API endpoint for categories */
+    resourceEndpoint = import.meta.env.VITE_CONCERTS_ENDPOINT_PATH;
 
-   /**
+    /**
+     * Retrieves all categories
+     * @returns {Promise<AxiosResponse<any>>} Promise that resolves to an array of categories
+     */
+    getAll() {
+        return httpInstance.get(this.resourceEndpoint);
+    }
+
+    /**
      * Retrieves a category by its ID
      * @param {number|string} id - The ID of the category to retrieve
      * @returns {Promise<AxiosResponse<any>>} Promise that resolves to the category object
