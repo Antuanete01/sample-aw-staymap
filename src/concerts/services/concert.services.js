@@ -1,15 +1,21 @@
 import { Concert } from '@/concerts/model/concert.entity';
 
 export class ConcertService {
+  // En producción, debe ser '/db.json'
   resourceEndpoint = import.meta.env.VITE_CONCERTS_ENDPOINT_PATH || '/db.json';
 
   async getAll() {
     try {
       const response = await fetch(this.resourceEndpoint);
+
+      if (!response.ok) {
+        throw new Error(`❌ No se pudo cargar el archivo JSON: ${response.status}`);
+      }
+
       const json = await response.json();
 
       if (!json.concerts || !Array.isArray(json.concerts.data)) {
-        console.error('❌ Estructura inválida en json.concerts.data');
+        console.error('❌ Estructura inválida: json.concerts.data');
         return [];
       }
 
