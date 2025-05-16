@@ -78,16 +78,11 @@ export default {
       return (Math.random() - 0.5) * offset;
     },
     fetchConcerts() {
-      this.concertService = new ConcertService();
-      this.concertService.getAll()
-        .then(response => {
-          this.concerts = response.map(c => new Concert(c));
-          this.loadMap();
-        })
-        .catch(error => {
-          console.error("❌ Error al obtener conciertos:", error);
-        });
-    }
+    this.concertService = new ConcertService();
+    this.concertService.getAll().then(concerts => {
+    this.concerts = concerts;
+    this.loadMap();
+  });
   },
   mounted() {
     this.fetchConcerts();
