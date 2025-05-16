@@ -2,33 +2,44 @@ import httpInstance from "../../shared/services/http.instance.js";
 import { Concert } from '@/concerts/model/concert.entity';
 
 export class ConcertService {
-  resourceEndpoint = import.meta.env.VITE_CONCERTS_ENDPOINT_PATH;
+  resourceEndpoint = import.meta.env.VITE_CONCERTS_ENDPOINT_PATH || '/db.json';
 
   /**
-   * Recupera todos los conciertos desde el archivo db.json en /public
+   * Recupera todos los conciertos desde el archivo db.json
    * @returns {Promise<Array<Concert>>}
    */
   async getAll() {
-    const response = await fetch(this.resourceEndpoint);
-    const json = await response.json();
+    try {
+      const response = await fetch(this.resourceEndpoint);
+      const json = await response.json();
 
-    if (!json.concerts || !Array.isArray(json.concerts.data)) {
-      console.error('❌ Error: El JSON no tiene una propiedad "concerts.data" válida');
+      if (!json.concerts || !Array.isArray(json.concerts.data)) {
+        console.error('❌ Error: Estructura inválida en concerts.data');
+        return [];
+      }
+
+      return json.concerts.data.map(c => new Concert(c));
+    } catch (error) {
+      console.error('❌ Error al obtener conciertos:', error);
       return [];
     }
-
-    return json.concerts.data.map(c => new Concert(c));
   }
 
-    /**
-     * Retrieves a category by its ID
-     * @param {number|string} id - The ID of the category to retrieve
-     * @returns {Promise<AxiosResponse<any>>} Promise that resolves to the category object
-     */
-    getById(id) {
-        return httpInstance.get(`${this.resourceEndpoint}/${id}`);
-    }
+  /**
+   * Recupera un concierto por ID desde el archivo local
+   */
+  async getById(id) {
+    const concerts = await this.getAll();
+    return concerts.find(c => c.id === id);
+  }
 
+  /**
+   * Filtra conciertos por nombre del artista (lectura local)
+   */
+  async getByName(name) {
+    const concerts = await this.getAll();
+    return concerts.filter(c => c.artist?.[0]?.name.toLowerCase().includes(name.toLowerCase()));
+  }
     /**
      * Creates a new category
      * @param {Object} resource - The category object to create
@@ -64,7 +75,7 @@ export class ConcertService {
      * @param {string} name - The name to search for
      * @returns {Promise<AxiosResponse<any>>} Promise that resolves to an array of matching categories
      */
-    getByName(name) {
+  /*  getByName(name) {
         return httpInstance.get(`${this.resourceEndpoint}?name=${name}`);
-    }
+    }*/
 }
