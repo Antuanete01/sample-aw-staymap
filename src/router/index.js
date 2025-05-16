@@ -6,7 +6,7 @@ import ConcertMapComponent from "@/concerts/pages/concert-map-component.vue";
 const routes = [
 
     {   path: '/communities', name: 'communities', component: CommunityManagementComponent, meta: {title: 'Communities'}},
-    {   path: '/',                      name: 'default',    redirect: {name: 'communities'}},
+
 
     {   path: '/concerts', name: 'concerts', component: ConcertManagementComponent, meta: {title: 'Concerts'}},
     {   path: '/',                      name: 'default',    redirect: {name: 'concerts'}},
